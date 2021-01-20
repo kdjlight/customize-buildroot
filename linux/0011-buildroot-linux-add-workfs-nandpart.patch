@@ -1,0 +1,18 @@
+diff --git a/arch/arm/boot/dts/at91-sama5d3_xplained.dts b/arch/arm/boot/dts/at91-sama5d3_xplained.dts
+index ba6a2e042a30..2c8ab7c698da 100644
+--- a/arch/arm/boot/dts/at91-sama5d3_xplained.dts
++++ b/arch/arm/boot/dts/at91-sama5d3_xplained.dts
+@@ -322,7 +322,12 @@
+ 
+ 						rootfs@800000 {
+ 							label = "rootfs";
+-							reg = <0x800000 0x0f800000>;
++							reg = <0x800000 0x7800000>;
++						};
++
++						workfs@8000000 {
++							label = "workfs";
++							reg = <0x8000000 0x8000000>;
+ 						};
+ 					};
+ 				};

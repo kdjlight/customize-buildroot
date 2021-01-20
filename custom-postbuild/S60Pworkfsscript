@@ -1,0 +1,28 @@
+#!/bin/sh
+#
+# Start workfs partition mount script
+#
+
+case "$1" in
+	start)
+		printf "Starting workfs: "
+		Mres=$(ubinfo -d1 -n0 | grep 'Name: ')
+		res="${Mres%%:*}"
+		if [ "$res" != "Name" ]; then
+			ubidetach /dev/ubi_ctrl -m 7
+			ubiformat /dev/mtd7
+			ubiattach /dev/ubi_ctrl -m 7
+			ubimkvol /dev/ubi1 -N workfs -s 100MiB
+		fi
+		mount -t ubifs ubi1:workfs /work
+		;;
+	stop)
+		printf "Stopping workfs: "
+		cd /
+		umount /work
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart}"
+		exit 1
+esac
+

@@ -1,0 +1,35 @@
+--- a/arch/arm/boot/dts/at91-sama5d3_xplained.dts	2020-05-26 01:58:23.000000000 +0900
++++ b/arch/arm/boot/dts/at91-sama5d3_xplained.dts	2021-01-14 11:22:25.985200829 +0900
+@@ -59,6 +59,17 @@
+ 			spi0: spi@f0004000 {
+ 				cs-gpios = <&pioD 13 0>, <0>, <0>, <&pioD 16 0>;
+ 				status = "okay";
++				
++				spidev@0 {
++					compatible = "linux,spidev";
++					spi-max-frequency = <24000000>;
++					reg = <0>;
++				};
++				spidev@3 {
++					compatible = "linux,spidev";
++					spi-max-frequency = <24000000>;
++					reg = <3>;
++				};
+ 			};
+ 
+ 			can0: can@f000c000 {
+@@ -169,8 +180,13 @@
+ 			};
+ 
+ 			spi1: spi@f8008000 {
+-				cs-gpios = <&pioC 25 0>;
++				cs-gpios = <&pioC 25 0>, <0>, <0>, <0>;
+ 				status = "okay";
++				spidev@0 {
++					compatible = "linux,spidev";
++					spi-max-frequency = <24000000>;
++					reg = <0>;
++				};
+ 			};
+ 
+ 			adc0: adc@f8018000 {

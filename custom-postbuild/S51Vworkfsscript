@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# Start workfs volume mount script
+#
+
+case "$1" in
+	start)
+		printf "Starting workfs: "
+		ubimkvol /dev/ubi0 -N workfs -s 120MiB
+		mount -t ubifs ubi0:workfs /work
+		;;
+	stop)
+		printf "Stopping workfs: "
+		cd /
+		umount /work
+		ubirmvol ubi0 -n 1
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart}"
+		exit 1
+esac
+

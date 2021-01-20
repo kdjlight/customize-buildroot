@@ -1,0 +1,10 @@
+--- a/arch/arm/boot/dts/at91-sama5d3_xplained.dts	2021-01-18 13:09:24.499184501 +0900
++++ b/arch/arm/boot/dts/at91-sama5d3_xplained.dts	2021-01-18 10:59:31.680295294 +0900
+@@ -381,6 +381,7 @@
+ 		d3 {
+ 			label = "d3";
+ 			gpios = <&pioE 24 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "heartbeat";
+ 		};
+ 	};
+ };
